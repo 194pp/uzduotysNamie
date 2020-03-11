@@ -3,21 +3,25 @@ package com.Projektas1.NamuDarbai;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-/**Parašyti programą, kuri leistų vartotojui įvesti norimą skaičių ir po to
- * parašytų ar šis skaičius yra lyginis, ar nelyginis.
- * Užuomina panaudokite % operatoriu.
+/**
+ * Parašyti programą, kuri paprašytų vesti skaičius tol, kol bus įvestas skaičius 0.
+ * Pabaigoje turi būti atvaizduojama įvestų skaičių suma.
+ * Skaičiavimas turi būti atliekamas kitame metode.
  */
 
-public class Uzduotis1 {
+public class Uzduotis3 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Įveskite skaičių: ");
-        int skaicius = getCorrectValue(sc);
-        if(skaicius%2==0){
-            System.out.println("Skaičius " + skaicius + " yra lyginis!");
+        int inputNumber = 1;
+
+        while (inputNumber != 0){
+            System.out.print("Įveskite skaičių: ");
+            inputNumber = getCorrectValue(sc);
+
+
         }
-        else System.out.println("Skaičius " + skaicius + " yra nelyginis!");
-        
+
+
     }
     private static int getCorrectValue(Scanner scanner) {
         while (true) {
