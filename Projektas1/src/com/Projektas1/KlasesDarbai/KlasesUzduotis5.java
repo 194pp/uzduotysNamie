@@ -24,7 +24,7 @@ public class KlasesUzduotis5 {
 
     }
 
-    private double average(double nuvaziuotasAtstumas, double kuroSanaudos){
+    public static double average(double nuvaziuotasAtstumas, double kuroSanaudos){
         return (kuroSanaudos * 100)/nuvaziuotasAtstumas;
     }
 
