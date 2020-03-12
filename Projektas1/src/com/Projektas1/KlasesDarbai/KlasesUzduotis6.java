@@ -1,25 +1,46 @@
 package com.Projektas1.KlasesDarbai;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class KlasesUzduotis6 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        List<String> errorCodes = new ArrayList<>();
         List<Character> galimiVeiksmai = List.of('/', '+', '-', '*');
 
         System.out.print("Įveskite veiksmą: ");
         String veiksmas = patikra(sc);
         arKlaida(veiksmas);
         String[] veiksmasSplit = veiksmas.split(" ");
-        if (veiksmasSplit.length != 3) arKlaida("klaida");
-        if (veiksmasSplit[1].length() != 1) arKlaida("klaida");
-        if (galimiVeiksmai.contains(veiksmasSplit[1])) arKlaida("klaida");
-        if (veiksmasSplit[1] == "/"){
-            if (veiksmasSplit[2] == "0") arKlaida("klaida");
+        if (veiksmasSplit.length != 3){ arKlaida("klaida"); }                                                    // Tikrinama ar tekstas buvo išskirtas į 3 dalis
+        if (veiksmasSplit[1].length() != 1){ arKlaida("klaida"); }                                               // Tikrinama ar operatoriaus ženklas yra vieno simbolio ilgio
+        if (galimiVeiksmai.contains(veiksmasSplit[1])){ arKlaida("klaida"); }                                    // Tikrinama ar įvestas operatorius yra būtent viduryje masyvo
+        if (veiksmasSplit[1] == "/"){ if (veiksmasSplit[2] == "0") arKlaida("klaida"); }                         // Tikrinama ar nėra dalinama iš nulio.
+
+
+        int pirmas = Integer.parseInt(veiksmasSplit[0]);
+        int antras = Integer.parseInt(veiksmasSplit[2]);
+        int atsakymas;
+
+        switch (veiksmasSplit[1]){
+            case "/":
+                atsakymas = dalint(pirmas,antras);
+                break;
+            case "*":
+                atsakymas = daugint(pirmas,antras);
+                break;
+            case "+":
+                atsakymas = plius(pirmas,antras);
+                break;
+            case "-":
+                atsakymas = minus(pirmas,antras);
+                break;
+            default:
+
+
         }
-
-
 
 
 
@@ -34,8 +55,10 @@ public class KlasesUzduotis6 {
 
         for (int i = 0; i < veiksmas.length(); i++) {
             simboliai[i] = veiksmas.charAt(i);
-            if (!galimaIvestis.contains(simboliai[i]))
+            if (!galimaIvestis.contains(simboliai[i])) {
+
                 return "klaida";
+            }
             if (simboliai[i] == '/' || simboliai[i] == '+' || simboliai[i] == '-' || simboliai[i] == '*'){
                 veiksmuSkaicius++;
                 if (veiksmuSkaicius > 1) return "klaida";
@@ -48,16 +71,8 @@ public class KlasesUzduotis6 {
             System.out.println("Įvesties klaida!");
         }
     }
-    public static int plius(int pirmas, int antras){
-        return pirmas + antras;
-    }
-    public static int minus(int pirmas, int antras){
-        return pirmas - antras;
-    }
-    public static int daugint(int pirmas, int antras){
-        return pirmas * antras;
-    }
-    public static int dalint(int pirmas, int antras){
-        return pirmas / antras;
-    }
+    public static int plius(int pirmas, int antras){ return pirmas + antras; }
+    public static int minus(int pirmas, int antras){ return pirmas - antras; }
+    public static int daugint(int pirmas, int antras){ return pirmas * antras; }
+    public static int dalint(int pirmas, int antras){ return pirmas / antras; }
 }
