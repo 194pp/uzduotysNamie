@@ -11,7 +11,7 @@ public class KlasesUzduotis6 {
         List<Character> galimiVeiksmai = List.of('/', '+', '-', '*');
 
         System.out.print("Įveskite veiksmą: ");
-        String veiksmas = patikra(sc);
+        String veiksmas = patikra(sc, errorCodes);
         arKlaida(veiksmas);
         String[] veiksmasSplit = veiksmas.split(" ");
         if (veiksmasSplit.length != 3){ arKlaida("klaida"); }                                                    // Tikrinama ar tekstas buvo išskirtas į 3 dalis
@@ -24,6 +24,12 @@ public class KlasesUzduotis6 {
         int antras = Integer.parseInt(veiksmasSplit[2]);
         int atsakymas;
 
+        if (errorCodes.size() > 0){
+            System.out.println("Bloga įvestis:");
+            for (int i = 0; i < errorCodes.size(); i++){
+                System.out.println(errorCodes.get(i));
+            }
+        }
         switch (veiksmasSplit[1]){
             case "/":
                 atsakymas = dalint(pirmas,antras);
@@ -46,7 +52,7 @@ public class KlasesUzduotis6 {
 
     }
 
-    public static String patikra(Scanner sc){
+    public static String patikra(Scanner sc, List<String> error){
         String veiksmas = sc.nextLine();
         int veiksmuSkaicius = 0;
         List<Character> galimaIvestis = List.of('0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
@@ -56,13 +62,14 @@ public class KlasesUzduotis6 {
         for (int i = 0; i < veiksmas.length(); i++) {
             simboliai[i] = veiksmas.charAt(i);
             if (!galimaIvestis.contains(simboliai[i])) {
-
+                error.add("Įvestas netinkamas simbolis.");
                 return "klaida";
             }
             if (simboliai[i] == '/' || simboliai[i] == '+' || simboliai[i] == '-' || simboliai[i] == '*'){
                 veiksmuSkaicius++;
                 if (veiksmuSkaicius > 1) return "klaida";
             }
+
         }
         return veiksmas;
     }
