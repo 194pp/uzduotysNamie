@@ -30,7 +30,7 @@ public class KlasesUzduotis5 {
 
     private double getValue(Scanner sc){
         Double value = null;
-        while(value!=null){
+        while(value==null){
             try{
                 value = sc.nextDouble();
             }catch(InputMismatchException e){
@@ -38,5 +38,6 @@ public class KlasesUzduotis5 {
                 sc.nextLine();
             }
         }
+        return value;
     }
 }
